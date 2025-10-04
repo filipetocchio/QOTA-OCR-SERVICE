@@ -1,0 +1,8 @@
+Flask, 
+pytesseract, 
+opencv-python-headless, 
+Pillow, 
+pdf2image, 
+PyMuPDF, 
+thefuzz, 
+python-Levenshtein
