@@ -1,8 +1,31 @@
+# Todos direitos autorais reservados pelo QOTA.
+
+# --- Core Web Framework ---
+# Responsável por criar a API e os endpoints.
 Flask==3.0.3
-pytesseract==0.3.10
-opencv-python-headless==4.10.0.84
-Pillow==10.4.0
-pdf2image==1.17.0
+
+# --- PDF & Image Processing ---
+# Biblioteca para extração direta de texto de PDFs.
 PyMuPDF==1.24.8
+# Converte páginas de PDF em imagens para o OCR.
+pdf2image==1.17.0
+# Biblioteca fundamental para manipulação de imagens em Python.
+Pillow==10.4.0
+
+# --- OCR & Computer Vision ---
+# Engine de Reconhecimento Óptico de Caracteres (OCR).
+pytesseract==0.3.10
+# Biblioteca para pré-processamento de imagem (limpeza, binarização, etc.).
+opencv-python-headless==4.10.0.84
+# Dependência do OpenCV, explicitada para garantir compatibilidade.
+numpy==1.26.4
+
+# --- Natural Language Processing (NLP) ---
+# Biblioteca para processamento avançado de texto e extração de entidades.
+spacy==3.8.0
+
+# --- String Matching (Opcional, mas útil para futuras melhorias) ---
+# Bibliotecas para comparação de strings por similaridade (fuzzy matching).
 thefuzz==0.22.1
 python-Levenshtein==0.25.1
+python-dotenv==0.21.0
