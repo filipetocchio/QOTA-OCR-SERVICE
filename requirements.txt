@@ -29,3 +29,11 @@ spacy==3.8.0
 thefuzz==0.22.1
 python-Levenshtein==0.25.1
 python-dotenv==0.21.0
+
+# --- Test Framework ---
+# O framework de testes padrão do ecossistema Python.
+pytest==8.2.2
+# Plugin do Pytest para simular requisições HTTP ao Flask.
+pytest-flask==1.3.0
+# Plugin para facilitar o "mocking" (simulação) de objetos.
+pytest-mock==3.14.0

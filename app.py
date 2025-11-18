@@ -245,9 +245,32 @@ def _extract_due_date(text: str) -> str | None:
 def _clean_value_str_to_float(value_str: str) -> float:
     """Converte uma string monetária (e.g., "R$ 1.234,56") para um float."""
     try:
-        # Limpeza robusta para diferentes formatos monetários.
+        if value_str is None:
+            return 0.0
+        
         cleaned = value_str.lower().replace('r$', '').strip()
-        cleaned = cleaned.replace('.', '').replace(',', '.')
+        
+        # Detecta o formato pelo último separador
+        last_comma = cleaned.rfind(',')
+        last_dot = cleaned.rfind('.')
+
+        # Formato Brasileiro: (1.234,56) ou (150,00)
+        # A vírgula é o decimal
+        if last_comma > last_dot:
+            cleaned = cleaned.replace('.', '') # Remove milhares
+            cleaned = cleaned.replace(',', '.') # Converte decimal
+        
+        # Formato Americano: (1,234.56) ou (150.00)
+        # O ponto é o decimal
+        elif last_dot > last_comma:
+            cleaned = cleaned.replace(',', '') # Remove milhares
+        
+        # Caso só tenha vírgula (ex: 150,00)
+        elif last_comma != -1:
+             cleaned = cleaned.replace(',', '.')
+             
+        # Caso só tenha ponto (150.00) ou nada (150), não faz nada.
+
         return float(cleaned)
     except (ValueError, AttributeError):
         return 0.0
@@ -263,7 +286,7 @@ def _extract_total_value(text: str) -> str | None:
     # Prioridade 1: Regex de alta confiança.
     match = re.search(r'(?:total\s+a\s+pagar|valor\s+total|total\s+da\s+conta)\s*r?\$\s*([\d.,]+)', text)
     if match:
-        return str(_clean_value_str_to_float(match.group(1)))
+        return f"{_clean_value_str_to_float(match.group(1)):.2f}"
 
     # Prioridade 2: Pega o maior valor monetário encontrado.
     matches = re.findall(r'r\$\s*([\d.,]{2,})', text)

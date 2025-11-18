@@ -30,9 +30,17 @@ jobs:
       - name: Install Python Dependencies
         run: pip install -r requirements.txt
       
+      - name: Download spaCy Model
+
+        run: python -m spacy download pt_core_news_lg
+
       - name: Run Linter (Flake8)
         run: |
           # Instala o linter
           pip install flake8
-          # Executa o linter. Ele falhará se o código não estiver formatado
+          # Executa o linter
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+      - name: Run Unit & Integration Tests (Pytest)
+        run: |
+          pytest
