@@ -289,10 +289,14 @@ Necessário para compilar PyMuPDF.
 - Windows:  
 ```bash
         .\venv\Scripts\activate
-- Linux/macOS:  
+```
+- Linux/macOS: 
+```bash 
         source venv/bin/activate
-
+```
+```bash 
     python -m pip install --upgrade pip
+    
     pip install -r requirements.txt
 ```
 ---
