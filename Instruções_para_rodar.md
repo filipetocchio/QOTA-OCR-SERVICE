@@ -96,6 +96,61 @@ pip install -r requirements.txt
 
 **Nota:** Se a instalação do PyMuPDF falhar com um erro de "metadata", significa que as "Build Tools C++" (Passo 1.C) não foram instaladas corretamente.
 
+---
+
+### Importante: Compatibilidade do PyMuPDF e Versão do Python
+
+O PyMuPDF *não oferece suporte ao Python 3.13*.  
+Se o ambiente virtual for criado usando essa versão, o pip tentará *compilar o PyMuPDF manualmente*, o que resulta em erros de "metadata" ou mensagens como:
+
+Exception: Unable to find Visual Studio
+metadata-generation-failed
+PyMuPDF build error 
+
+---
+
+### ✅ Como resolver
+
+Para instalar corretamente o PyMuPDF, é *obrigatório usar uma versão do Python suportada*, como:
+
+- *Python 3.10*
+- *Python 3.11*
+- *Python 3.12* (recomendado)
+
+---
+
+### 🛠️ Passo a passo
+
+#### 1. Instale uma versão suportada do Python (3.10–3.12)
+Baixe em:  
+https://www.python.org/downloads/
+
+---
+
+#### 2. Apague o ambiente virtual atual (caso tenha sido criado com Python 3.13)
+
+```bash
+rmdir venv /s /q
+```
+
+#### 3. Crie um novo ambiente virtual usando uma versão compatível do Python (ex.: 3.12)
+
+```bash
+py -3.12 -m venv venv
+```
+
+####  4. Ative o ambiente virtual
+
+```bash
+.\venv\Scripts\activate
+```
+
+#### 5. Reinstale as dependências
+
+```bash
+pip install -r requirements.txt
+```
+---
 
 
 
